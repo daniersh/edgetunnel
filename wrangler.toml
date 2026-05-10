@@ -13,4 +13,3 @@ zone_name = "aistar.eu.cc"
 [[kv_namespaces]]
 binding = "KV"
 id = "99ea03af3d3945eeaef1941b0739f632"
-
