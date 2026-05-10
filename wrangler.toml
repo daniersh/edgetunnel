@@ -2,3 +2,6 @@ name = "edgetunnel-worker"
 main = "_worker.js"
 compatibility_date = "2025-11-04"
 keep_vars = true
+[[kv_namespaces]]
+binding = "KV"
+id = "99ea03af3d3945eeaef1941b0739f632"
