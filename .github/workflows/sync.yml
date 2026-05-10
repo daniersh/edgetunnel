@@ -5,32 +5,31 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0  * * "*
   workflow_dispatch:
 
 jobs:
   sync_latest_from_upstream:
     name: Sync latest commits from upstream repo
-    runs-on: ubuntu-latest
-    if: ${{ github.event.repository.fork }}
+    runs-on: ubuntu-2404
+    if: ${ github.event.repository.fork }
 
-    steps:
+     steps:
       - name: Checkout target repo
         uses: actions/checkout@v3
 
       - name: Sync upstream changes
-        id: sync
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
-        with:
+       id: sync
+       uses: aorpsby/Fork-Sync-With-Upstream-action@v3.4
+       with:
           upstream_sync_repo: zizifn/edgetunnel
           upstream_sync_branch: main
           target_sync_branch: main
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          target_repo_token: ${ secrets.GITHUB_TOKEN }
           test_mode: false
 
-      - name: Sync check
-        if: failure()
-        run: |
-          echo "[Error] 由于上游仓库的 workflow 文件变更，导致 GitHub 自动暂停了本次自动更新，你需要手动 Sync Fork 一次"
-          exit 1
-
+    - name: Sync check
+      if: failure()
+      run:
+        echo "[Error] Due to upstream repository's workflow file change, GitHub automatically suspended this auto sync"
+        exit 1
