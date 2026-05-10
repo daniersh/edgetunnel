@@ -3,10 +3,9 @@ main = "_worker.js"
 compatibility_date = "2025-11-04"
 keep_vars = true
 
-[[custom_domains]]
-hostname = "et.aistar.eu.cc"
-service = "edgetunnel-worker"
-environment = "production"
-
 [vars]
 ADMIN = "spy57470"
+
+[[routes]]
+pattern = "et.aistar.eu.cc"
+zone_name = "aistar.eu.cc"
