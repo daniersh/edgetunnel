@@ -28,5 +28,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          vars: |
+            ADMIN=${{ secrets.ADMIN }}
           # 如果项目是 Pages，使用下面这行；如果是 Worker，默认即可
           command: pages deploy . --project-name=edgetunnel-worker
