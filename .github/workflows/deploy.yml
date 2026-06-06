@@ -18,8 +18,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          # 直接执行部署，无需 npm 环境
           command: deploy
-          # 确保环境变量正确注入
-          vars: |
-            ADMIN=${{ secrets.ADMIN }}
