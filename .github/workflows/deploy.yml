@@ -4,30 +4,22 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 0 * * *' # 每天自动运行一次，检测更新并部署
-  workflow_dispatch:      # 允许你手动点击按钮触发
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          # 直接执行部署，无需 npm 环境
+          command: deploy
+          # 确保环境变量正确注入
           vars: |
             ADMIN=${{ secrets.ADMIN }}
-          command: pages deploy
